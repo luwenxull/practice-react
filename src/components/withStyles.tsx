@@ -1,21 +1,6 @@
 import React from 'react';
 import createSheet, { IJSSSheetStyles, JSSSheet } from '@luwenxull/jss'
-
-interface IPracticeTheme {
-  backgroud: string,
-  color: string,
-}
-
-const theme: IPracticeTheme = {
-  backgroud: 'blue',
-  color: 'red',
-}
-
-declare global {
-  interface Window { practice_theme: IPracticeTheme; }
-}
-
-window.practice_theme = theme
+import { getTheme, onThemeChange, offThemeChange, IPracticeTheme } from '../theme'
 
 export const ThemeContext = React.createContext({});
 
@@ -23,45 +8,48 @@ export function withStyles<T>(
   Component: React.ComponentType<T>,
   factory: (data: IPracticeTheme) => IJSSSheetStyles
 ) {
-  let count = 0;
-  let sheet: JSSSheet<IPracticeTheme>;
+  // let count = 0;
+  let sheet = createSheet(factory)
   let hasInflated: boolean = false;
+  onThemeChange(() => {
+    sheet.replace(getTheme())
+  })
   return class extends React.Component<T> {
     constructor(p: T) {
       super(p);
-      if (count === 0) {
-        sheet = createSheet(factory)
-        console.log(sheet)
-      }
+      this.handleThemeChange = this.handleThemeChange.bind(this)
       this.state = {
         classes: sheet.classes,
-        update: null,
       };
-      count++;
-    }
-
-    updateTheme() {
-
+      // count++;
     }
 
     componentDidMount() {
       if (!hasInflated) {
         sheet
-          .inflate(window.practice_theme)
+          .inflate(getTheme())
           .attach();
         hasInflated = true;
         // console.log(sheet)
+      }
+      this.setState({
+        classes: sheet.classes
+      });
+      onThemeChange(() => {
         this.setState({
           classes: sheet.classes
-        });
-      }
+        })
+      })
+    }
+
+    handleThemeChange() {
+      this.setState({
+        classes: sheet.classes
+      })
     }
 
     componentWillUnmount() {
-      count--;
-      if (count === 0) {
-        console.log('should remove')
-      }
+      offThemeChange(this.handleThemeChange)
     }
 
     render() {
