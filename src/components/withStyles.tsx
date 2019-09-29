@@ -1,8 +1,12 @@
 import React from 'react';
-import createSheet, { IJSSSheetStyles, JSSSheet } from '@luwenxull/jss'
-import { getTheme, onThemeChange, offThemeChange, IPracticeTheme } from '../theme'
-
-export const ThemeContext = React.createContext({});
+import createSheet, { IJSSSheetStyles } from '@luwenxull/jss'
+import {
+  getTheme,
+  onThemeChange,
+  offThemeChange,
+  IPracticeTheme,
+  ThemeContext,
+} from '../theme'
 
 export function withStyles<T>(
   Component: React.ComponentType<T>,
@@ -35,11 +39,7 @@ export function withStyles<T>(
       this.setState({
         classes: sheet.classes
       });
-      onThemeChange(() => {
-        this.setState({
-          classes: sheet.classes
-        })
-      })
+      onThemeChange(this.handleThemeChange)
     }
 
     handleThemeChange() {

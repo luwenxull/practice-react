@@ -1,13 +1,18 @@
+import React from 'react'
+
 export interface IPracticeTheme {
   color: string,
+  fontSize: string,
 }
 
 const themeRed: IPracticeTheme = {
   color: 'red',
+  fontSize: '20px'
 }
 
 const themeBlue: IPracticeTheme = {
   color: 'blue',
+  fontSize: '14px'
 }
 
 const themes = {
@@ -37,3 +42,5 @@ export function updateTheme(to: ValidThemes) {
   current = to
   listener.forEach(f => f())
 }
+
+export const ThemeContext = React.createContext({});

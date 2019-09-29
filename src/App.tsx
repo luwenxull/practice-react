@@ -25,11 +25,11 @@ class App extends React.Component {
         <Menu></Menu>
         <Route
           path="/code-split"
-          component={lodable(() => import('./pages/advanced-guides/CodeSplit'))}
+          component={lodable(() => import('./pages/code-split/Demo'))}
         />
         <Route
           path="/dynamic-theme"
-          component={lodable(() => import('./pages/jss/DynamicTheme'))}
+          component={lodable(() => import('./pages/context/Demo'))}
         />
       </Router>
     );
