@@ -19,6 +19,7 @@ class StyledDiv extends React.Component {
     )
   }
 
+  // Consumer用法参考ContextConsumer.tsx
   static contextType = ThemeContext;
 }
 

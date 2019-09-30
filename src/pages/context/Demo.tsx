@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import StyledDiv from './StyledDiv'
+import ContextConsumer from './ContextConsumer'
 import { updateTheme, current } from '../../theme'
 export default class extends React.Component {
   constructor(p: any) {
@@ -15,7 +16,7 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div style={{padding: 12}}>
+      <div style={{ padding: 12 }}>
         <Grid container spacing={3}>
           <Grid item lg={6}>
             <StyledDiv>测试文字1</StyledDiv>
@@ -24,7 +25,16 @@ export default class extends React.Component {
             <StyledDiv>测试文字2</StyledDiv>
           </Grid>
           <Grid item>
-            <Button variant="contained" onClick={this.handleClick}>切换主题</Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={this.handleClick}
+            >
+              切换主题
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <ContextConsumer></ContextConsumer>
           </Grid>
         </Grid>
       </div>

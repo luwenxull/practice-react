@@ -17,7 +17,7 @@ class Menu extends Component {
             <Link to="/code-split">代码分割</Link>
           </ListItem>
           <ListItem button>
-            <Link to="/dynamic-theme">动态主题</Link>
+            <Link to="/context">动态主题</Link>
           </ListItem>
         </List>
         <Divider />

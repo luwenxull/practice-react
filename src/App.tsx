@@ -28,7 +28,7 @@ class App extends React.Component {
           component={lodable(() => import('./pages/code-split/Demo'))}
         />
         <Route
-          path="/dynamic-theme"
+          path="/context"
           component={lodable(() => import('./pages/context/Demo'))}
         />
       </Router>
