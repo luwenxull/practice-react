@@ -2,7 +2,12 @@ import React from 'react';
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import { withStyles } from '../../components/withStyles';
-import { ThemeContext } from '../../theme';
+import {
+  ThemeContext,
+  getTheme,
+  onThemeChange,
+  offThemeChange,
+} from '../../theme';
 
 class StyledDiv extends React.Component {
 
@@ -32,5 +37,12 @@ export default withStyles(
         // 'font-size': data.fontSize,
       }
     }
-  }
+  },
+  // 主题切换
+  {
+    get: getTheme, // 获取
+    on: onThemeChange, // 监听更新
+    off: offThemeChange, // 注销更新
+  },
+  'styled_'
 )

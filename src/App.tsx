@@ -31,6 +31,10 @@ class App extends React.Component {
           path="/context"
           component={lodable(() => import('./pages/context/Demo'))}
         />
+        <Route
+          path="/error-boundries"
+          component={lodable(() => import('./pages/error-boundries/Demo'))}
+        />
       </Router>
     );
   }
