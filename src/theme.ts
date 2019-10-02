@@ -42,5 +42,3 @@ export function updateTheme(to: ValidThemes) {
   current = to
   listener.forEach(f => f())
 }
-
-export const ThemeContext = React.createContext({});

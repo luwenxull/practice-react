@@ -1,9 +1,8 @@
 import React from 'react';
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-import { withStyles } from '../../components/withStyles';
+import { withStyles, ThemeContext } from '../../components/withStyles';
 import {
-  ThemeContext,
   getTheme,
   onThemeChange,
   offThemeChange,

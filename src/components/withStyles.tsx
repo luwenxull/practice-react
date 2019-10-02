@@ -1,8 +1,7 @@
 import React from 'react';
 import createSheet, { IJSSSheetStyles } from '@luwenxull/jss'
-import {
-  ThemeContext,
-} from '../theme'
+
+export const ThemeContext = React.createContext({});
 
 export function withStyles<T, U>(
   Component: React.ComponentType<T>,
