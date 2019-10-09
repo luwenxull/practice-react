@@ -39,6 +39,10 @@ class App extends React.Component {
           path="/ref-dom"
           component={lodable(() => import('./pages/ref-dom/Demo'))}
         />
+        <Route
+          path="/render-props"
+          component={lodable(() => import('./pages/render-props/Demo'))}
+        />
       </Router>
     );
   }
