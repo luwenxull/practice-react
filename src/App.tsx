@@ -35,6 +35,10 @@ class App extends React.Component {
           path="/error-boundries"
           component={lodable(() => import('./pages/error-boundries/Demo'))}
         />
+        <Route
+          path="/ref-dom"
+          component={lodable(() => import('./pages/ref-dom/Demo'))}
+        />
       </Router>
     );
   }

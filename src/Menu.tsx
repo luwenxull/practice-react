@@ -19,6 +19,12 @@ class Menu extends Component {
           <ListItem button>
             <Link to="/context">动态主题</Link>
           </ListItem>
+          <ListItem button>
+            <Link to="/error-boundries">错误边界</Link>
+          </ListItem>
+          <ListItem button>
+            <Link to="/ref-dom">Ref</Link>
+          </ListItem>
         </List>
         <Divider />
       </Drawer>
