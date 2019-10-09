@@ -39,9 +39,7 @@ export function withStyles<T, U>(
         hasInflated = true;
         // console.log(sheet)
       }
-      this.setState({
-        classes: sheet.classes
-      });
+      this.updateClasses()
       if (option.on) {
         option.on(this.updateClasses)
       }

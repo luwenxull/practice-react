@@ -36,8 +36,8 @@ class App extends React.Component {
           component={lodable(() => import('./pages/error-boundries/Demo'))}
         />
         <Route
-          path="/ref-dom"
-          component={lodable(() => import('./pages/ref-dom/Demo'))}
+          path="/ref"
+          component={lodable(() => import('./pages/ref/Demo'))}
         />
         <Route
           path="/render-props"

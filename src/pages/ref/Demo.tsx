@@ -1,10 +1,10 @@
 import React from 'react';
-import Dom from './Dom';
+import Ref from './Ref';
 
 export default function () {
   return (
     <React.Fragment>
-      <Dom></Dom>
+      <Ref></Ref>
     </React.Fragment>
   )
 }
