@@ -29,19 +29,21 @@ class StyledDiv extends React.Component {
 
 export default withStyles(
   StyledDiv,
-  data => {
+  [
+    data => {
     return {
       div: {
         color: data.color,
         // 'font-size': data.fontSize,
       }
     }
-  },
+    },
+    getTheme,
+    'styled_',
+  ],
   // 主题切换
   {
-    get: getTheme, // 获取
     on: onThemeChange, // 监听更新
     off: offThemeChange, // 注销更新
-  },
-  'styled_'
+  }
 )

@@ -5,20 +5,19 @@ export const ThemeContext = React.createContext({});
 
 export function withStyles<T, U>(
   Component: React.ComponentType<T>,
-  factory: (data: U) => IJSSSheetStyles,
+  sheetConfig: [(data: U) => IJSSSheetStyles, () => U, string?],
   option: {
-    get: () => U,
     on?: (cb: () => void) => void,
     off?: (cb: () => void) => void,
   },
-  namespace: string = ''
 ) {
   // let count = 0;
+  const [factory, getter, namespace = ''] = sheetConfig
   let sheet = createSheet(factory, namespace)
   let hasInflated: boolean = false;
   if (option.on) {
     option.on(() => {
-      sheet.replace(option.get())
+      sheet.replace(getter())
     })
   }
   return class extends React.Component<T> {
@@ -34,7 +33,7 @@ export function withStyles<T, U>(
     componentDidMount() {
       if (!hasInflated) {
         sheet
-          .inflate(option.get())
+          .inflate(getter())
           .attach();
         hasInflated = true;
         // console.log(sheet)

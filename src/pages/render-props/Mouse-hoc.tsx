@@ -5,13 +5,9 @@ interface IState {
   y: number,
 }
 
-interface IProps {
-  render(state: IState): React.ReactElement
-}
-
 export default function(Component: React.ComponentType<IState>) {
-  return class extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
+  return class extends React.Component<any, IState> {
+    constructor(props: any) {
       super(props);
       this.handleMouseMove = this.handleMouseMove.bind(this);
       this.state = { x: 0, y: 0 };
@@ -32,7 +28,8 @@ export default function(Component: React.ComponentType<IState>) {
             Instead of providing a static representation of what <Mouse> renders,
             use the `render` prop to dynamically determine what to render.
           */}
-          <Component {...this.state}/>
+          {/* 也可用hoc实现 */}
+          <Component {...this.state} {...this.props}/>
         </div>
       );
     }
