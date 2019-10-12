@@ -40,6 +40,10 @@ class App extends React.Component {
           component={lodable(() => import('./pages/ref/Demo'))}
         />
         <Route
+          path="/forward-ref"
+          component={lodable(() => import('./pages/ref-forward/Demo'))}
+        />
+        <Route
           path="/render-props"
           component={lodable(() => import('./pages/render-props/Demo'))}
         />
