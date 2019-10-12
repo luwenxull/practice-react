@@ -5,7 +5,7 @@ import { withStyles, ThemeContext } from '../../components/withStyles';
 import {
   getTheme,
   onThemeChange,
-  offThemeChange,
+  // offThemeChange,
 } from '../../theme';
 
 class StyledDiv extends React.Component {
@@ -27,7 +27,7 @@ class StyledDiv extends React.Component {
   static contextType = ThemeContext;
 }
 
-export default withStyles(
+const Component = withStyles(
   StyledDiv,
   [
     data => {
@@ -41,9 +41,8 @@ export default withStyles(
     getTheme,
     'styled_',
   ],
-  // 主题切换
-  {
-    on: onThemeChange, // 监听更新
-    off: offThemeChange, // 注销更新
-  }
 )
+
+onThemeChange(Component.updateSheet)
+
+export default Component

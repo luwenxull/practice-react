@@ -6,20 +6,11 @@ export const ThemeContext = React.createContext({});
 export function withStyles<T, U>(
   Component: React.ComponentType<T>,
   sheetConfig: [(data: U) => IJSSSheetStyles, () => U, string?],
-  option: {
-    on?: (cb: () => void) => void,
-    off?: (cb: () => void) => void,
-  },
 ) {
   // let count = 0;
   const [factory, getter, namespace = ''] = sheetConfig
   let sheet = createSheet(factory, namespace)
   let hasInflated: boolean = false;
-  if (option.on) {
-    option.on(() => {
-      sheet.replace(getter())
-    })
-  }
   return class extends React.Component<T> {
     constructor(p: T) {
       super(p);
@@ -27,7 +18,6 @@ export function withStyles<T, U>(
       this.state = {
         classes: sheet.classes,
       };
-      // count++;
     }
 
     componentDidMount() {
@@ -36,12 +26,9 @@ export function withStyles<T, U>(
           .inflate(getter())
           .attach();
         hasInflated = true;
-        // console.log(sheet)
       }
       this.updateClasses()
-      if (option.on) {
-        option.on(this.updateClasses)
-      }
+      sheet.onChange(this.updateClasses)
     }
 
     updateClasses() {
@@ -51,9 +38,7 @@ export function withStyles<T, U>(
     }
 
     componentWillUnmount() {
-      if (option.off) {
-        option.off(this.updateClasses)
-      }
+      sheet.offChange(this.updateClasses)
     }
 
     render() {
@@ -62,6 +47,10 @@ export function withStyles<T, U>(
           <Component {...this.props} />
         </ThemeContext.Provider>
       )
+    }
+
+    static updateSheet() {
+      sheet.replace(getter())
     }
   }
 }
